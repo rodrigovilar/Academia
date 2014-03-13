@@ -16,16 +16,20 @@ public class AcademiaTest {
 	@Test
 	public void AdcionarAluno() {
 		
+		Aluno aluno = criarUmAluno();
+		Aluno aluno2 = CriarAlunoNovamente();
+	    assertEquals(aluno,aluno2);  
+	}
+	
+	
+	
+
+	public Aluno criarUmAluno(){
+		
 		Aluno aluno = new Aluno();
-		Aluno aluno2 = new Aluno();
-		
 		Endereco end = new Endereco();
-		Endereco end2 = new Endereco();
-		
 		Modalidade modalidade = new Modalidade();
-		Modalidade modalidade2 = new Modalidade();
-		
-	    aluno.setNome("Heitor");
+		aluno.setNome("Heitor");
 	    aluno.setEmail("heitor@gmail.com");
 	    aluno.setMatricula(1);
 	    aluno.setTelefone("2356450");
@@ -40,9 +44,16 @@ public class AcademiaTest {
 	    aluno.setEndereco(end);
 	    aluno.setModalidade(modalidade);
 	    academia.adcionarAluno(aluno);
-	    
-	    // -- 2º aluno adicionado  
-	    aluno2.setNome("Heitor");
+	    return aluno;
+	}
+	
+	public Aluno CriarAlunoNovamente(){
+		
+		Aluno aluno2 = new Aluno();
+		Endereco end2 = new Endereco();
+		Modalidade modalidade2 = new Modalidade();
+		
+		aluno2.setNome("Heitor");
 	    aluno2.setEmail("heitor@gmail.com");
 	    aluno2.setMatricula(1);
 	    aluno2.setTelefone("2356450");
@@ -57,13 +68,8 @@ public class AcademiaTest {
 	    aluno2.setEndereco(end2);
 	    aluno2.setModalidade(modalidade2);
 	    academia.adcionarAluno(aluno2);
-	    
-	    // testando se o primeiro aluno é igual ao segundo. no caso o teste é para passar pois são identico.
-	    assertEquals(aluno,aluno2);
-	    
-	    
+	    return aluno2;
 	}
-	
 	
 
 }
