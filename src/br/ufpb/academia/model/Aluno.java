@@ -8,7 +8,7 @@ package br.ufpb.academia.model;
 
 /**
  *
- * @author 
+ * @author mailton
  */
 public class Aluno extends Pessoa{
     
