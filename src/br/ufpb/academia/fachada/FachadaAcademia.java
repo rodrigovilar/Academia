@@ -36,8 +36,8 @@ public class FachadaAcademia {
         gerenAluno.listarAlunos();
     }
     
-    public void buscarAluno(int matricula) {
-        gerenAluno.buscarAluno(matricula);
+    public Aluno buscarAluno(int matricula) {
+      return  gerenAluno.buscarAluno(matricula);
     }
     
     public void atualizarALuno(Aluno aluno) {
@@ -56,8 +56,8 @@ public class FachadaAcademia {
         gerenProf.listarProfessor();
     }
 
-    public void buscarProfessor(int matricula) {
-        gerenProf.buscarProfessor(matricula);
+    public Professor buscarProfessor(int matricula) {
+       return gerenProf.buscarProfessor(matricula);
     }
 
     public void atualizarProfessor(Professor professor) {
