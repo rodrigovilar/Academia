@@ -17,7 +17,7 @@ public class AcademiaTest {
 	public void AdcionarAluno() {
 
 		Aluno aluno = criarUmAluno();
-		Aluno aluno2 = CriarAlunoNovamente();
+		Aluno aluno2 = criarAlunoNovamente();
 		assertEquals(aluno, aluno2);
 	}
 
@@ -44,7 +44,7 @@ public class AcademiaTest {
 		return aluno;
 	}
 
-	public Aluno CriarAlunoNovamente() {
+	public Aluno criarAlunoNovamente() {
 
 		Aluno aluno2 = new Aluno();
 		Endereco end2 = new Endereco();
