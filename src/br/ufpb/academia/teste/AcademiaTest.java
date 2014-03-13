@@ -20,6 +20,14 @@ public class AcademiaTest {
 		Aluno aluno2 = criarAlunoNovamente();
 		assertEquals(aluno, aluno2);
 	}
+	
+	@Test
+	public void removerAluno() {
+
+		Aluno aluno = criarUmAluno();
+		academia.removerAluno(1);
+		assertEquals(null, academia.buscarAluno(1));
+	}
 
 	public Aluno criarUmAluno() {
 
@@ -66,6 +74,30 @@ public class AcademiaTest {
 		aluno2.setModalidade(modalidade2);
 		academia.adcionarAluno(aluno2);
 		return aluno2;
+	}
+	
+	public Aluno criarAlunoDiferente() {
+
+		Aluno aluno3 = new Aluno();
+		Endereco end3 = new Endereco();
+		Modalidade modalidade3 = new Modalidade();
+
+		aluno3.setNome("mailton");
+		aluno3.setEmail("mailton.fernandes@dce.ufpb.br");
+		aluno3.setMatricula(3);
+		aluno3.setTelefone("123456");
+		modalidade3.setNome("natação");
+		modalidade3.setValor(50);
+		end3.setRua("Rua A");
+		end3.setNumero("33");
+		end3.setComplemento("casa");
+		end3.setBairro("Centro");
+		end3.setCidade("Mamanguape");
+		end3.setEstado("PB");
+		aluno3.setEndereco(end3);
+		aluno3.setModalidade(modalidade3);
+		academia.adcionarAluno(aluno3);
+		return aluno3;
 	}
 
 }

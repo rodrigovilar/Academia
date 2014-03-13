@@ -36,6 +36,10 @@ public class FachadaAcademia {
         gerenAluno.listarAlunos();
     }
     
+    public void quantidadeDeAlunos(){
+    	gerenAluno.quantidadeDeAluno();
+    }
+    
     public Aluno buscarAluno(int matricula) {
       return  gerenAluno.buscarAluno(matricula);
     }

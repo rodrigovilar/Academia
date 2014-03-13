@@ -21,10 +21,6 @@ public class GerenciadorAluno {
         listaAlunos.add(aluno);
     }
 
-    public void removerAluno(Aluno aluno) {
-        listaAlunos.remove(aluno);
-    }
-
     public List<Aluno> listarAlunos() {
         return listaAlunos;
     }
@@ -47,6 +43,10 @@ public class GerenciadorAluno {
             }
         }
 
+    }
+    
+    public int quantidadeDeAluno(){
+    	return listaAlunos.size();
     }
     
     public void atualizarAluno(Aluno novoAluno){
