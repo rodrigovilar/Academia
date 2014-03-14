@@ -20,6 +20,7 @@ public class AcademiaTest {
 		Aluno aluno2 = criarAlunoNovamente();
 		assertEquals(aluno, aluno2);
 	}
+	//eeeee
 	
 	@Test
 	public void removerAluno() {
