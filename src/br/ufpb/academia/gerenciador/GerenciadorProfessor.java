@@ -44,6 +44,10 @@ public class GerenciadorProfessor {
         }
 
     }
+    
+    public int quantidadeDeProfessor(){
+    	return listaProfessores.size();
+    }
 
     public void atualizarProfessor(Professor novoProfessor) {
         for (Professor professor : listaProfessores) {
