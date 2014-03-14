@@ -20,7 +20,7 @@ public class AcademiaTest {
 		Aluno aluno2 = criarAlunoNovamente();
 		assertEquals(aluno, aluno2);
 	}
-	//eeeee
+	
 	
 	@Test
 	public void removerAluno() {
@@ -39,7 +39,7 @@ public class AcademiaTest {
 		aluno.setEmail("heitor@gmail.com");
 		aluno.setMatricula(1);
 		aluno.setTelefone("2356450");
-		modalidade.setNome("musculação");
+		modalidade.setNome("musculaï¿½ï¿½o");
 		modalidade.setValor(70);
 		end.setRua("Otavio Felix");
 		end.setNumero("101");
@@ -63,7 +63,7 @@ public class AcademiaTest {
 		aluno2.setEmail("heitor@gmail.com");
 		aluno2.setMatricula(1);
 		aluno2.setTelefone("2356450");
-		modalidade2.setNome("musculação");
+		modalidade2.setNome("musculaï¿½ï¿½o");
 		modalidade2.setValor(70);
 		end2.setRua("Otavio Felix");
 		end2.setNumero("101");
@@ -87,7 +87,7 @@ public class AcademiaTest {
 		aluno3.setEmail("mailton.fernandes@dce.ufpb.br");
 		aluno3.setMatricula(3);
 		aluno3.setTelefone("123456");
-		modalidade3.setNome("natação");
+		modalidade3.setNome("nataï¿½ï¿½o");
 		modalidade3.setValor(50);
 		end3.setRua("Rua A");
 		end3.setNumero("33");
