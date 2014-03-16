@@ -9,48 +9,44 @@ import br.ufpb.academia.model.Aluno;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author 
- */
 public class GerenciadorAluno {
 
-    List<Aluno> listaAlunos = new ArrayList<>();
+	List<Aluno> listaAlunos = new ArrayList<>();
 
-    public void adcionarAluno(Aluno aluno) {
-        listaAlunos.add(aluno);
-    }
+	public void adcionarAluno(Aluno aluno) {
+		listaAlunos.add(aluno);
+	}
 
-    public List<Aluno> listarAlunos() {
-        return listaAlunos;
-    }
+	public List<Aluno> listarAlunos() {
+		return listaAlunos;
+	}
 
-    public Aluno buscarAluno(int matricula) {
-        for (Aluno aluno : listaAlunos) {
-            if (aluno.getMatricula() == matricula) {
-                return aluno;
-            }
-        }
+	public Aluno buscarAluno(int matricula) {
+		for (Aluno aluno : listaAlunos) {
+			if (aluno.getMatricula() == matricula) {
+				return aluno;
+			}
+		}
 
-        return null;
-    }
+		return null;
+	}
 
-    public void removerAluno(Aluno aluno) {
-        listaAlunos.remove(aluno);
-     }
-        
-    public int quantidadeDeAluno(){
-    	return listaAlunos.size();
-    }
-    
-    public Aluno getAluno(int posicao){
+	public void removerAluno(Aluno aluno) {
+		listaAlunos.remove(aluno);
+	}
+
+	public int quantidadeDeAluno() {
+		return listaAlunos.size();
+	}
+
+	public Aluno getAluno(int posicao) {
 		return listaAlunos.get(posicao);
 	}
-    
-    public void atualizarAluno(Object p1, Object p2) {
+
+	public void atualizarAluno(Object p1, Object p2) {
 		for (int i = 0; i < this.listaAlunos.size(); i++) {
 			if (this.listaAlunos.get(i).equals(p1)) {
-				this.listaAlunos.set(i, (Aluno)p2);
+				this.listaAlunos.set(i, (Aluno) p2);
 			}
 		}
 

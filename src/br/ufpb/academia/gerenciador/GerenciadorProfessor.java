@@ -10,41 +10,40 @@ import br.ufpb.academia.model.Professor;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class GerenciadorProfessor {
 
-    List<Professor> listaProfessores = new ArrayList<>();
-    
-    public void adcionarProfessor(Professor professor){
-        listaProfessores.add(professor);
-    }
+	List<Professor> listaProfessores = new ArrayList<>();
 
-    public Professor buscarProfessor(int matricula) {
-        for (Professor professor : listaProfessores) {
-            if (professor.getMatricula() == matricula) {
-                return professor;
-            }
-        }
+	public void adcionarProfessor(Professor professor) {
+		listaProfessores.add(professor);
+	}
 
-        return null;
-    }
+	public Professor buscarProfessor(int matricula) {
+		for (Professor professor : listaProfessores) {
+			if (professor.getMatricula() == matricula) {
+				return professor;
+			}
+		}
 
-    public void removerProfessor(Professor professor) {
-    	 listaProfessores.remove(professor);
-    }
-    
-    public int quantidadeDeProfessor(){
-    	return listaProfessores.size();
-    }
-    
-    public Professor getProfessor(int posicao){
+		return null;
+	}
+
+	public void removerProfessor(Professor professor) {
+		listaProfessores.remove(professor);
+	}
+
+	public int quantidadeDeProfessor() {
+		return listaProfessores.size();
+	}
+
+	public Professor getProfessor(int posicao) {
 		return listaProfessores.get(posicao);
 	}
-    
-    public void atualizarProfessor(Object p1, Object p2) {
+
+	public void atualizarProfessor(Object p1, Object p2) {
 		for (int i = 0; i < this.listaProfessores.size(); i++) {
 			if (this.listaProfessores.get(i).equals(p1)) {
-				this.listaProfessores.set(i, (Professor)p2);
+				this.listaProfessores.set(i, (Professor) p2);
 			}
 		}
 

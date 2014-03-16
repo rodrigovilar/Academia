@@ -8,7 +8,6 @@ package br.ufpb.academia.model;
 
 public class Professor extends Pessoa{
     
-    
     private String cpf;
     private String salario;
 

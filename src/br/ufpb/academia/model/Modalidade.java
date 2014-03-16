@@ -6,17 +6,10 @@
 
 package br.ufpb.academia.model;
 
-/**
- *
- * @author 
- */
 public class Modalidade {
-    
     
     private String nome;
     private double valor;
-
-  
 
     public String getNome() {
         return nome;
@@ -38,6 +31,5 @@ public class Modalidade {
     public String toString() {
         return "Modalidade{" + "nome=" + nome + ", valor=" + valor + '}';
     }
-    
     
 }

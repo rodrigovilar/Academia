@@ -6,12 +6,7 @@
 
 package br.ufpb.academia.model;
 
-/**
- *
- * @author mailton
- */
 public class Aluno extends Pessoa{
-    
     
     private  Modalidade modalidade;
 
@@ -27,6 +22,4 @@ public class Aluno extends Pessoa{
     public String toString() {
         return "Aluno{" + "modalidade=" + modalidade + '}' + super.toString(); 
     }
-   
-    
 }
