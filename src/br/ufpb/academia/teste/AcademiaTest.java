@@ -18,8 +18,9 @@ public class AcademiaTest {
 	public void adicionarAluno() {
 		
 		Aluno aluno = criarAluno();
-		academia.adcionarAluno(aluno);;
+		academia.adcionarAluno(aluno);
 		Aluno aux = academia.getAluno(0); // comparando com o aluno na posição 0 da lista
+		
 		assertEquals(aluno,aux);
 	}
 	
@@ -27,8 +28,9 @@ public class AcademiaTest {
 	public void removerAluno() {
 		
 		Aluno aluno = criarAluno();
-		academia.adcionarAluno(aluno);;
+		academia.adcionarAluno(aluno);
 		academia.removerAluno(aluno);
+		
 		assertEquals(0, academia.quantidadeDeAlunos());
 	}
 	
@@ -38,7 +40,7 @@ public class AcademiaTest {
 		Aluno aluno = criarAluno();
 		academia.adcionarAluno(aluno);
 		aluno = criarAlunoAuxiliar();
-		academia.adcionarAluno(aluno);;
+		academia.adcionarAluno(aluno);
 		Aluno aux = academia.getAluno(1);
 		assertEquals(aluno, aux);
 	}
@@ -49,20 +51,22 @@ public class AcademiaTest {
 		Aluno aluno = criarAluno();
 		academia.adcionarAluno(aluno);;
 		Aluno aluno2 = criarAlunoAuxiliar();
-		academia.adcionarAluno(aluno2);;
+		academia.adcionarAluno(aluno2);
+		
 		assertEquals(2, academia.quantidadeDeAlunos());
 	}
 	
 	@Test
 	public void atualizarAluno() {
 		
-		Aluno aluno1 = criarAluno();
-		academia.adcionarAluno(aluno1);
+		Aluno aluno1 = criarAluno(); 
+		academia.adcionarAluno(aluno1); // add na posicao 0 da lista
 		Aluno aluno2 = criarAlunoAuxiliar();
-		academia.adcionarAluno(aluno2);
-	
-		academia.atualizarAluno(aluno1, aluno2);
-		assertEquals(aluno2, academia.getAluno(0));	
+		academia.adcionarAluno(aluno2);  // add na posicao 1 da lista
+		academia.atualizarAluno(aluno1, aluno2); // tracando o aluno da posicao 1 pela posicao 2
+		academia.removerAluno(aluno1); // removendo o aluno 1
+		
+		assertEquals(aluno2, academia.getAluno(0));	// comparando o aluno 2 com a posicao 0 da lista
 	}
 	
 	@Test
