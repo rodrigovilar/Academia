@@ -6,12 +6,6 @@
 
 package br.ufpb.academia.model;
 
-
-
-/**
- *
- * @author
- */
 public class Professor extends Pessoa{
     
     
@@ -38,11 +32,4 @@ public class Professor extends Pessoa{
     public String toString() {
         return "Professor{" + "cpf=" + cpf + ", salario=" + salario + '}' + super.toString();
     }
-
-   
-
-   
-    
-    
-    
 }

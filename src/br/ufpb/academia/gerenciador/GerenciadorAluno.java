@@ -35,30 +35,25 @@ public class GerenciadorAluno {
         return null;
     }
 
-    public void removerAluno(int matricula) {
-        for (Aluno aluno : listaAlunos) {
-            if (aluno.getMatricula() == matricula) {
-                listaAlunos.remove(aluno);
-                return;
-            }
-        }
-
-    }
-    
+    public void removerAluno(Aluno aluno) {
+        listaAlunos.remove(aluno);
+     }
+        
     public int quantidadeDeAluno(){
     	return listaAlunos.size();
     }
     
-    public void atualizarAluno(Aluno novoAluno){
-         for (Aluno aluno : listaAlunos) {
-            if (aluno.getMatricula() == novoAluno.getMatricula()) {
-                aluno.setNome(novoAluno.getNome());
-                aluno.setEmail(novoAluno.getEmail());
-                aluno.setModalidade(novoAluno.getModalidade());
-                aluno.setTelefone(novoAluno.getTelefone());
-                aluno.setEndereco(novoAluno.getEndereco());
-            }
-        }
-    }
+    public Aluno getAluno(int posicao){
+		return listaAlunos.get(posicao);
+	}
+    
+    public void atualizarAluno(Object p1, Object p2) {
+		for (int i = 0; i < this.listaAlunos.size(); i++) {
+			if (this.listaAlunos.get(i).equals(p1)) {
+				this.listaAlunos.set(i, (Aluno)p2);
+			}
+		}
+
+	}
 
 }

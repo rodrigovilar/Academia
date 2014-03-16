@@ -10,10 +10,6 @@ import br.ufpb.academia.gerenciador.GerenciadorProfessor;
 import br.ufpb.academia.model.Aluno;
 import br.ufpb.academia.model.Professor;
 
-/**
- *
- * @author 
- */
 public class FachadaAcademia {
     
     GerenciadorAluno gerenAluno;
@@ -28,8 +24,8 @@ public class FachadaAcademia {
         gerenAluno.adcionarAluno(aluno);
     }
     
-    public void removerAluno(int matricula) {
-        gerenAluno.removerAluno(matricula);
+    public void removerAluno(Aluno aluno) {
+        gerenAluno.removerAluno(aluno);
     }
     
     public void listarAluno() {
@@ -48,27 +44,31 @@ public class FachadaAcademia {
       return  gerenAluno.buscarAluno(matricula);
     }
     
-    public void atualizarALuno(Aluno aluno) {
-        gerenAluno.atualizarAluno(aluno);
+    public void atualizarAluno(Object alunoAntigo, Object alunoNovo){
+    	gerenAluno.atualizarAluno(alunoAntigo, alunoNovo);
     }
+    
+  public Aluno getAluno(int posicao){
+	  return gerenAluno.getAluno(posicao);
+  }
     
     public void adcionarProfessor(Professor professor) {
         gerenProf.adcionarProfessor(professor);
     }
     
-    public void removerProfessor(int matricula) {
-        gerenProf.removerProfessor(matricula);
+    public void removerProfessor(Professor professor) {
+        gerenProf.removerProfessor(professor);
     }
     
-    public void listarProfessor() {
-        gerenProf.listarProfessor();
-    }
-
     public Professor buscarProfessor(int matricula) {
        return gerenProf.buscarProfessor(matricula);
     }
-
-    public void atualizarProfessor(Professor professor) {
-        gerenProf.atualizarProfessor(professor);
+    
+    public Professor getpProfessor(int posicao){
+    	return gerenProf.getProfessor(posicao);
+    }
+    
+    public void atualizarProfessor(Object profAntigo, Object profNovo){
+    	gerenProf.atualizarProfessor(profAntigo, profNovo);
     }
 }
