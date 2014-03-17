@@ -33,10 +33,6 @@ public class FachadaAcademia {
 		gerenAluno.removerAluno(aluno);
 	}
 
-	public void listarAluno() {
-		gerenAluno.listarAlunos();
-	}
-
 	public int quantidadeDeAlunos() {
 		return gerenAluno.quantidadeDeAluno();
 	}

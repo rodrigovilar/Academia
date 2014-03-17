@@ -19,9 +19,8 @@ public class AcademiaTest {
 
 		Aluno aluno = criarAluno();
 		academia.adcionarAluno(aluno);
-		Aluno aux = academia.getAluno(0); // comparando com o aluno na posição 0
-											// da lista
-
+		Aluno aux = academia.getAluno(0); // comparando com o aluno na posição 0 da lista
+										
 		assertEquals(aluno, aux);
 	}
 
@@ -43,6 +42,7 @@ public class AcademiaTest {
 		aluno = criarAlunoAuxiliar();
 		academia.adcionarAluno(aluno);
 		Aluno aux = academia.getAluno(1);
+		
 		assertEquals(aluno, aux);
 	}
 
@@ -51,7 +51,6 @@ public class AcademiaTest {
 
 		Aluno aluno = criarAluno();
 		academia.adcionarAluno(aluno);
-		;
 		Aluno aluno2 = criarAlunoAuxiliar();
 		academia.adcionarAluno(aluno2);
 
@@ -62,12 +61,12 @@ public class AcademiaTest {
 	public void atualizarAluno() {
 
 		Aluno aluno1 = criarAluno();
-		academia.adcionarAluno(aluno1); // add na posicao 0 da lista
-		Aluno aluno2 = criarAlunoAuxiliar();
-		academia.atualizarAluno(aluno1, aluno2); // trocando o aluno da posicao
-													// 0 pela posicao 1
-		assertEquals(aluno2, academia.getAluno(0)); // comparando o aluno2 com a
-													// posicao 0 da lista
+		academia.adcionarAluno(aluno1); 
+		Aluno aluno2 = criarAlunoAuxiliar(); // aluno que vai substituir o aluno1
+		academia.atualizarAluno(aluno1, aluno2); 
+		
+		assertEquals(aluno2, academia.getAluno(0)); 
+													
 	}
 
 	@Test
@@ -76,6 +75,7 @@ public class AcademiaTest {
 		Professor professor = criarProfessor();
 		academia.adcionarProfessor(professor);
 		Professor aux = academia.getpProfessor(0);
+		
 		assertEquals(professor, aux);
 	}
 
@@ -85,6 +85,7 @@ public class AcademiaTest {
 		Professor professor = criarProfessor();
 		academia.adcionarProfessor(professor);
 		academia.removerProfessor(professor);
+		
 		assertEquals(0, academia.quantidadeDeProfesores());
 	}
 
@@ -93,11 +94,10 @@ public class AcademiaTest {
 
 		Professor professor = criarProfessor();
 		academia.adcionarProfessor(professor);
-		;
 		professor = criarProfessorAuxiliar();
 		academia.adcionarProfessor(professor);
-		;
 		Professor aux = academia.getpProfessor(1);
+		
 		assertEquals(professor, aux);
 	}
 
@@ -106,9 +106,9 @@ public class AcademiaTest {
 
 		Professor professor = criarProfessor();
 		academia.adcionarProfessor(professor);
-		;
 		Professor professor2 = criarProfessorAuxiliar();
 		academia.adcionarProfessor(professor2);
+		
 		assertEquals(2, academia.quantidadeDeProfesores());
 	}
 
@@ -119,6 +119,7 @@ public class AcademiaTest {
 		academia.adcionarProfessor(professor1);
 		Professor professor2 = criarProfessorAuxiliar();
 		academia.atualizarProfessor(professor1, professor2);
+		
 		assertEquals(professor2, academia.getpProfessor(0));
 	}
 
@@ -128,6 +129,7 @@ public class AcademiaTest {
 		PersonalTrainer personal = criarPersonal();
 		academia.adcionarPersonal(personal);
 		PersonalTrainer aux = academia.getPersonal(0);
+		
 		assertEquals(personal, aux);
 	}
 
@@ -137,6 +139,7 @@ public class AcademiaTest {
 		PersonalTrainer personal = criarPersonal();
 		academia.adcionarPersonal(personal);
 		academia.removerPersonal(personal);
+		
 		assertEquals(0, academia.quantidadeDePersonals());
 	}
 
@@ -148,6 +151,7 @@ public class AcademiaTest {
 		personal = criarPersonalAxiliar();
 		academia.adcionarPersonal(personal);
 		PersonalTrainer aux = academia.getPersonal(1);
+		
 		assertEquals(personal, aux);
 	}
 
@@ -158,6 +162,7 @@ public class AcademiaTest {
 		academia.adcionarPersonal(personal);
 		PersonalTrainer personal2 = criarPersonalAxiliar();
 		academia.adcionarPersonal(personal2);
+		
 		assertEquals(2, academia.quantidadeDePersonals());
 	}
 
@@ -168,6 +173,7 @@ public class AcademiaTest {
 		academia.adcionarPersonal(personal);
 		PersonalTrainer personal2 = criarPersonalAxiliar();
 		academia.atualizarPersonal(personal, personal2);
+		
 		assertEquals(personal2, academia.getPersonal(0));
 	}
 
