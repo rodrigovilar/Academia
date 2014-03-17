@@ -9,14 +9,19 @@ public class GerenciadorPersonalTrainer {
 	List<PersonalTrainer> listaPersonals = new ArrayList<>();
 
 	public void adcionarPersonal(PersonalTrainer personal) {
-		listaPersonals.add(personal);
+		if ((personal.getNome() != null) 
+				&& (personal.getMatricula() != null)
+				&& (personal.getDiaria() != null)
+				&& (personal.getDescricao() != null)
+				&& (buscarPersonal(personal.getMatricula()) == null))
+			listaPersonals.add(personal);
 	}
 
 	public void removerPersonal(PersonalTrainer personal) {
 		listaPersonals.remove(personal);
 	}
 
-	public PersonalTrainer buscarPersonal(int matricula) {
+	public PersonalTrainer buscarPersonal(String matricula) {
 		for (PersonalTrainer personal : listaPersonals) {
 			if (personal.getMatricula() == matricula) {
 				return personal;

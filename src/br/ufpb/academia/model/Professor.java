@@ -9,7 +9,7 @@ package br.ufpb.academia.model;
 public class Professor extends Pessoa{
     
     private String cpf;
-    private String salario;
+    private double salario;
 
     public String getCpf() {
         return cpf;
@@ -19,11 +19,11 @@ public class Professor extends Pessoa{
         this.cpf = cpf;
     }
 
-    public String getSalario() {
+    public double getSalario() {
         return salario;
     }
 
-    public void setSalario(String salario) {
+    public void setSalario(double salario) {
         this.salario = salario;
     }
 

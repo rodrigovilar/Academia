@@ -15,10 +15,15 @@ public class GerenciadorProfessor {
 	List<Professor> listaProfessores = new ArrayList<>();
 
 	public void adcionarProfessor(Professor professor) {
-		listaProfessores.add(professor);
+		if ((professor.getNome() != null) 
+				&& (professor.getMatricula() != null)
+				&& (professor.getCpf() != null)
+				&& (professor.getSalario() >= 0)
+				&& (buscarProfessor(professor.getMatricula()) == null))
+			listaProfessores.add(professor);
 	}
 
-	public Professor buscarProfessor(int matricula) {
+	public Professor buscarProfessor(String matricula) {
 		for (Professor professor : listaProfessores) {
 			if (professor.getMatricula() == matricula) {
 				return professor;

@@ -7,84 +7,77 @@
 package br.ufpb.academia.model;
 
 /**
- *
- * @author 
+ * 
+ * @author
  */
 public class Pessoa {
-    
-    private int matricula;
-    private String nome;
-    private String telefone;
-    private Endereco endereco;
-    private String email;
 
-    public String getNome() {
-        return nome;
-    }
+	private String matricula;
+	private String nome;
+	private String telefone;
+	private Endereco endereco;
+	private String email;
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public String getTelefone() {
-        return telefone;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
+	public String getTelefone() {
+		return telefone;
+	}
 
-    public Endereco getEndereco() {
-        return endereco;
-    }
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
+	public Endereco getEndereco() {
+		return endereco;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public int getMatricula() {
-        return matricula;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public void setMatricula(int matricula) {
-        this.matricula = matricula;
-    }
+	public String getMatricula() {
+		return matricula;
+	}
 
-    @Override
-    public String toString() {
-        return "Pessoa{" + "matricula=" + matricula + ", nome=" + nome + ", telefone=" + telefone + ", endereco=" + endereco + ", email=" + email + '}';
-    }
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 97 * hash + this.matricula;
-        return hash;
-    }
+	@Override
+	public String toString() {
+		return "Pessoa{" + "matricula=" + matricula + ", nome=" + nome
+				+ ", telefone=" + telefone + ", endereco=" + endereco
+				+ ", email=" + email + '}';
+	}
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Pessoa other = (Pessoa) obj;
-        if (this.matricula != other.matricula) {
-            return false;
-        }
-        return true;
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if ((obj == null) || (getClass() != obj.getClass())) {
+			return false;
+		}
+		
+		final Pessoa other = (Pessoa) obj;
+		
+		if (this.matricula != other.matricula) {
+			return false;
+		}
+		
+		return true;
+	}
 
-   
-    
 }

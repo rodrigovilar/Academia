@@ -1,311 +1,399 @@
 package br.ufpb.academia.teste;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
+import org.junit.Before;
 import org.junit.Test;
 
-import br.ufpb.academia.model.*;
 import br.ufpb.academia.fachada.FachadaAcademia;
 import br.ufpb.academia.model.Aluno;
 import br.ufpb.academia.model.Endereco;
 import br.ufpb.academia.model.Modalidade;
+import br.ufpb.academia.model.PersonalTrainer;
+import br.ufpb.academia.model.Professor;
 
 public class AcademiaTest {
-
 	private FachadaAcademia academia = new FachadaAcademia();
+	private Aluno aluno, alunoAuxiliar, alunoSemDados;
+	private Professor professor, professorAuxiliar, professorSemDados;
+	private PersonalTrainer personalTrainer, personalTrainerAuxiliar, personalTrainerSemDados;
+
+	@Before
+	public void setUp() {
+		aluno = criarAluno();
+		alunoAuxiliar = criarAlunoAuxiliar();
+		alunoSemDados = criarAlunoSemDados();
+		
+		professor = criarProfessor();
+		professorAuxiliar = criarProfessorAuxiliar();
+		professorSemDados = criarProfessorSemDados();
+		
+		personalTrainer = criarPersonalTrainer();
+		personalTrainerAuxiliar = criarPersonalTrainerAxiliar();
+		personalTrainerSemDados = criarPersonalTrainerSemDados();
+	}
 
 	@Test
 	public void adicionarAluno() {
-
-		Aluno aluno = criarAluno();
-		academia.adcionarAluno(aluno);
-		Aluno aux = academia.getAluno(0); // comparando com o aluno na posição 0 da lista
-										
-		assertEquals(aluno, aux);
+		academia.adicionarAluno(aluno);
+		assertEquals(1, academia.quantidadeDeAlunos());
+		
+		academia.adicionarAluno(alunoAuxiliar);
+		assertEquals(2, academia.quantidadeDeAlunos());
+	}
+	
+	@Test
+	public void adicionarAlunoSemNome() {
+		academia.adicionarAluno(alunoSemDados);
+		assertEquals(0, academia.quantidadeDeAlunos());
+	}
+	
+	@Test
+	public void adicionarAlunoSemMatricula() {
+		academia.adicionarAluno(alunoSemDados);
+		assertEquals(0, academia.quantidadeDeAlunos());
+	}
+	
+	@Test
+	public void adicionarAlunoSemModalidade() {
+		academia.adicionarAluno(alunoSemDados);
+		assertEquals(0, academia.quantidadeDeAlunos());
+	}
+	
+	@Test
+	public void adicionarAlunoComMatriculaJaCadastrada() {
+		academia.adicionarAluno(aluno);
+		assertEquals(1, academia.quantidadeDeAlunos());
+		
+		academia.adicionarAluno(aluno);
+		assertEquals(1, academia.quantidadeDeAlunos());
 	}
 
 	@Test
 	public void removerAluno() {
-
-		Aluno aluno = criarAluno();
-		academia.adcionarAluno(aluno);
+		academia.adicionarAluno(aluno);
+		assertEquals(1, academia.quantidadeDeAlunos());
+		
 		academia.removerAluno(aluno);
-
 		assertEquals(0, academia.quantidadeDeAlunos());
 	}
 
 	@Test
-	public void adicionarAlunoDiferente() {
-
-		Aluno aluno = criarAluno();
-		academia.adcionarAluno(aluno);
-		aluno = criarAlunoAuxiliar();
-		academia.adcionarAluno(aluno);
-		Aluno aux = academia.getAluno(1);
-		
-		assertEquals(aluno, aux);
-	}
-
-	@Test
 	public void quantidadeDeAlunos() {
-
-		Aluno aluno = criarAluno();
-		academia.adcionarAluno(aluno);
-		Aluno aluno2 = criarAlunoAuxiliar();
-		academia.adcionarAluno(aluno2);
-
+		academia.adicionarAluno(aluno);
+		academia.adicionarAluno(alunoAuxiliar);
 		assertEquals(2, academia.quantidadeDeAlunos());
 	}
 
 	@Test
 	public void atualizarAluno() {
-
-		Aluno aluno1 = criarAluno();
-		academia.adcionarAluno(aluno1); 
-		Aluno aluno2 = criarAlunoAuxiliar(); // aluno que vai substituir o aluno1
-		academia.atualizarAluno(aluno1, aluno2); 
+		academia.adicionarAluno(aluno);
+		assertEquals(aluno, academia.getAluno(0));
+		assertEquals(aluno.getNome(), academia.getAluno(0).getNome());
+		assertEquals(aluno.getEmail(), academia.getAluno(0).getEmail());
+		assertEquals(aluno.getMatricula(), academia.getAluno(0).getMatricula());
 		
-		assertEquals(aluno2, academia.getAluno(0)); 
-													
+		// aluno que vai substituir o aluno já cadastrado
+		academia.atualizarAluno(aluno, alunoAuxiliar);
+		assertEquals(alunoAuxiliar, academia.getAluno(0));
+		assertEquals(alunoAuxiliar.getNome(), academia.getAluno(0).getNome());
+		assertEquals(alunoAuxiliar.getEmail(), academia.getAluno(0).getEmail());
+		assertEquals(alunoAuxiliar.getMatricula(), academia.getAluno(0).getMatricula());
 	}
 
 	@Test
 	public void adicionarProfessor() {
-
-		Professor professor = criarProfessor();
-		academia.adcionarProfessor(professor);
-		Professor aux = academia.getpProfessor(0);
+		academia.adicionarProfessor(professor);
+		assertEquals(1, academia.quantidadeDeProfessores());
 		
-		assertEquals(professor, aux);
+		academia.adicionarProfessor(professorAuxiliar);
+		assertEquals(2, academia.quantidadeDeProfessores());
+	}
+	
+	@Test
+	public void adicionarProfessorSemNome() {
+		academia.adicionarProfessor(professorSemDados);
+		assertEquals(0, academia.quantidadeDeProfessores());
+	}
+	
+	@Test
+	public void adicionarProfessorSemMatricula() {
+		academia.adicionarProfessor(professorSemDados);
+		assertEquals(0, academia.quantidadeDeProfessores());
+	}
+	
+	@Test
+	public void adicionarProfessorSemCpf() {
+		academia.adicionarProfessor(professorSemDados);
+		assertEquals(0, academia.quantidadeDeProfessores());
+	}
+	
+	@Test
+	public void adicionarProfessorComMatriculaJaCadastrada() {
+		academia.adicionarProfessor(professor);
+		assertEquals(1, academia.quantidadeDeProfessores());
+		
+		academia.adicionarProfessor(professor);
+		assertEquals(1, academia.quantidadeDeProfessores());
 	}
 
 	@Test
 	public void removerProfessor() {
-
-		Professor professor = criarProfessor();
-		academia.adcionarProfessor(professor);
+		academia.adicionarProfessor(professor);
+		assertEquals(1, academia.quantidadeDeProfessores());
+		
 		academia.removerProfessor(professor);
-		
-		assertEquals(0, academia.quantidadeDeProfesores());
-	}
-
-	@Test
-	public void adicionarProfessorDiferente() {
-
-		Professor professor = criarProfessor();
-		academia.adcionarProfessor(professor);
-		professor = criarProfessorAuxiliar();
-		academia.adcionarProfessor(professor);
-		Professor aux = academia.getpProfessor(1);
-		
-		assertEquals(professor, aux);
+		assertEquals(0, academia.quantidadeDeProfessores());
 	}
 
 	@Test
 	public void quantidadeDeProfessor() {
-
-		Professor professor = criarProfessor();
-		academia.adcionarProfessor(professor);
-		Professor professor2 = criarProfessorAuxiliar();
-		academia.adcionarProfessor(professor2);
-		
-		assertEquals(2, academia.quantidadeDeProfesores());
+		academia.adicionarProfessor(professor);
+		academia.adicionarProfessor(professorAuxiliar);
+		assertEquals(2, academia.quantidadeDeProfessores());
 	}
 
 	@Test
 	public void atualizarProfessor() {
-
-		Professor professor1 = criarProfessor();
-		academia.adcionarProfessor(professor1);
-		Professor professor2 = criarProfessorAuxiliar();
-		academia.atualizarProfessor(professor1, professor2);
+		academia.adicionarProfessor(professor);
+		assertEquals(professor, academia.getProfessor(0));
+		assertEquals(professor.getNome(), academia.getProfessor(0).getNome());
+		assertEquals(professor.getEmail(), academia.getProfessor(0).getEmail());
+		assertEquals(professor.getMatricula(), academia.getProfessor(0).getMatricula());
 		
-		assertEquals(professor2, academia.getpProfessor(0));
+		// professor que vai substituir o professor já adicionado
+		academia.atualizarProfessor(professor, professorAuxiliar);
+		assertEquals(professorAuxiliar, academia.getProfessor(0));
+		assertEquals(professorAuxiliar.getNome(), academia.getProfessor(0).getNome());
+		assertEquals(professorAuxiliar.getEmail(), academia.getProfessor(0).getEmail());
+		assertEquals(professorAuxiliar.getMatricula(), academia.getProfessor(0).getMatricula());
 	}
 
 	@Test
 	public void adicionarPersonal() {
-
-		PersonalTrainer personal = criarPersonal();
-		academia.adcionarPersonal(personal);
-		PersonalTrainer aux = academia.getPersonal(0);
+		academia.adicionarPersonal(personalTrainer);
+		assertEquals(1, academia.quantidadeDePersonals());
 		
-		assertEquals(personal, aux);
+		academia.adicionarPersonal(personalTrainerAuxiliar);
+		assertEquals(2, academia.quantidadeDePersonals());
+	}
+	
+	@Test
+	public void adicionarPersonalSemNome() {
+		academia.adicionarPersonal(personalTrainerSemDados);
+		assertEquals(0, academia.quantidadeDePersonals());
+	}
+	
+	@Test
+	public void adicionarPersonalSemMatricula() {
+		academia.adicionarPersonal(personalTrainerSemDados);
+		assertEquals(0, academia.quantidadeDePersonals());
+	}
+	
+	@Test
+	public void adicionarPersonalSemDiariaEDescricao() {
+		academia.adicionarPersonal(personalTrainerSemDados);
+		assertEquals(0, academia.quantidadeDePersonals());
+	}
+	
+	@Test
+	public void adicionarPersonalComMatriculaJaCadastrada() {
+		academia.adicionarPersonal(personalTrainer);
+		assertEquals(1, academia.quantidadeDePersonals());
+		
+		academia.adicionarPersonal(personalTrainer);
+		assertEquals(1, academia.quantidadeDePersonals());
 	}
 
 	@Test
 	public void removerPersonal() {
-
-		PersonalTrainer personal = criarPersonal();
-		academia.adcionarPersonal(personal);
-		academia.removerPersonal(personal);
+		academia.adicionarPersonal(personalTrainer);
+		assertEquals(1, academia.quantidadeDePersonals());
 		
+		academia.removerPersonal(personalTrainer);
 		assertEquals(0, academia.quantidadeDePersonals());
 	}
 
 	@Test
-	public void adicionarPersonalDiferente() {
-
-		PersonalTrainer personal = criarPersonal();
-		academia.adcionarPersonal(personal);
-		personal = criarPersonalAxiliar();
-		academia.adcionarPersonal(personal);
-		PersonalTrainer aux = academia.getPersonal(1);
-		
-		assertEquals(personal, aux);
-	}
-
-	@Test
 	public void quantidadeDePersonal() {
-
-		PersonalTrainer personal = criarPersonal();
-		academia.adcionarPersonal(personal);
-		PersonalTrainer personal2 = criarPersonalAxiliar();
-		academia.adcionarPersonal(personal2);
-		
+		academia.adicionarPersonal(personalTrainer);
+		academia.adicionarPersonal(personalTrainerAuxiliar);
 		assertEquals(2, academia.quantidadeDePersonals());
 	}
 
 	@Test
 	public void atualizarPersonal() {
-
-		PersonalTrainer personal = criarPersonal();
-		academia.adcionarPersonal(personal);
-		PersonalTrainer personal2 = criarPersonalAxiliar();
-		academia.atualizarPersonal(personal, personal2);
+		academia.adicionarPersonal(personalTrainer);
+		assertEquals(personalTrainer, academia.getPersonal(0));
+		assertEquals(personalTrainer.getNome(), academia.getPersonal(0).getNome());
+		assertEquals(personalTrainer.getEmail(), academia.getPersonal(0).getEmail());
+		assertEquals(personalTrainer.getMatricula(), academia.getPersonal(0).getMatricula());
 		
-		assertEquals(personal2, academia.getPersonal(0));
+		// personal que vai substituir o personal já cadastrado
+		academia.atualizarPersonal(personalTrainer, personalTrainerAuxiliar);
+		assertEquals(personalTrainerAuxiliar, academia.getPersonal(0));
+		assertEquals(personalTrainerAuxiliar.getNome(), academia.getPersonal(0).getNome());
+		assertEquals(personalTrainerAuxiliar.getEmail(), academia.getPersonal(0).getEmail());
+		assertEquals(personalTrainerAuxiliar.getMatricula(), academia.getPersonal(0).getMatricula());
 	}
 
 	public Aluno criarAluno() {
-
 		Aluno aluno = new Aluno();
-		Endereco end = new Endereco();
+		Endereco endereco = new Endereco();
 		Modalidade modalidade = new Modalidade();
 
 		aluno.setNome("Heitor");
 		aluno.setEmail("heitor@gmail.com");
-		aluno.setMatricula(1);
+		aluno.setMatricula("1");
 		aluno.setTelefone("2356450");
+		
 		modalidade.setNome("musculaï¿½ï¿½o");
 		modalidade.setValor(70);
-		end.setRua("Otavio Felix");
-		end.setNumero("101");
-		end.setComplemento("Apt 103");
-		end.setBairro("jose americo de Almeida");
-		end.setCidade("Joao Pessoa");
-		end.setEstado("PB");
-		aluno.setEndereco(end);
 		aluno.setModalidade(modalidade);
+		
+		endereco.setRua("Otavio Felix");
+		endereco.setNumero("101");
+		endereco.setComplemento("Apt 103");
+		endereco.setBairro("jose americo de Almeida");
+		endereco.setCidade("Joao Pessoa");
+		endereco.setEstado("PB");
+		aluno.setEndereco(endereco);
+		
 		return aluno;
 	}
 
 	public Aluno criarAlunoAuxiliar() {
+		Aluno alunoAuxiliar = new Aluno();
+		Endereco endereco = new Endereco();
+		Modalidade modalidade = new Modalidade();
 
-		Aluno aluno2 = new Aluno();
-		Endereco end2 = new Endereco();
-		Modalidade modalidade2 = new Modalidade();
+		alunoAuxiliar.setNome("Mailton");
+		alunoAuxiliar.setEmail("mailton.fernandes@dce.ufpb.br");
+		alunoAuxiliar.setMatricula("2");
+		alunoAuxiliar.setTelefone("000000");
+		
+		modalidade.setNome("natacao");
+		modalidade.setValor(100);
+		alunoAuxiliar.setModalidade(modalidade);
+		
+		endereco.setRua("Rua A");
+		endereco.setNumero("10");
+		endereco.setComplemento("casa");
+		endereco.setBairro("centro");
+		endereco.setCidade("Mamanguape");
+		endereco.setEstado("PB");
+		alunoAuxiliar.setEndereco(endereco);
+		
+		return alunoAuxiliar;
+	}
 
-		aluno2.setNome("Mailton");
-		aluno2.setEmail("mailton.fernandes@dce.ufpb.br");
-		aluno2.setMatricula(2);
-		aluno2.setTelefone("000000");
-		modalidade2.setNome("natacao");
-		modalidade2.setValor(100);
-		end2.setRua("Rua A");
-		end2.setNumero("10");
-		end2.setComplemento("casa");
-		end2.setBairro("centro");
-		end2.setCidade("Mamanguape");
-		end2.setEstado("PB");
-		aluno2.setEndereco(end2);
-		aluno2.setModalidade(modalidade2);
-		return aluno2;
+	public Aluno criarAlunoSemDados() {
+		Aluno alunoSemDados = new Aluno();
+		alunoSemDados.setEndereco(new Endereco());
+		alunoSemDados.setModalidade(new Modalidade());
+		
+		return alunoSemDados;
 	}
 
 	public Professor criarProfessor() {
-
 		Professor professor = new Professor();
-		Endereco end = new Endereco();
-
-		end.setRua("Palmeiras 2 Divisão");
-		end.setNumero("11");
-		end.setComplemento("333");
-		end.setBairro("Centro");
-		end.setCidade("Campina Grande");
-		end.setEstado("PB");
+		Endereco endereco = new Endereco();
+		
 		professor.setNome("Rodrigo Vilar");
 		professor.setEmail("rodriogovilar@gmail.com");
-		professor.setEndereco(end);
-		professor.setMatricula(1);
+		professor.setMatricula("1");
 		professor.setTelefone("0800-3333");
-		professor.setSalario("1000.0");
+		professor.setSalario(1000);
 		professor.setCpf("12311222");
-		return professor;
 
+		endereco.setRua("Palmeiras 2 Divisão");
+		endereco.setNumero("11");
+		endereco.setComplemento("333");
+		endereco.setBairro("Centro");
+		endereco.setCidade("Campina Grande");
+		endereco.setEstado("PB");
+		professor.setEndereco(endereco);
+		
+		return professor;
 	}
 
 	public Professor criarProfessorAuxiliar() {
+		Professor professorAuxiliar = new Professor();
+		Endereco endereco = new Endereco();
+		
+		professorAuxiliar.setNome("Albert");
+		professorAuxiliar.setEmail("albert@dce.ufpb.br");
+		professorAuxiliar.setMatricula("111");
+		professorAuxiliar.setTelefone("0800-1111");
+		professorAuxiliar.setSalario(5000);
+		professorAuxiliar.setCpf("22222222");
 
-		Professor professor2 = new Professor();
-		Endereco end = new Endereco();
-
-		end.setRua("uma rua qualquer");
-		end.setNumero("1000");
-		end.setComplemento("blablabla");
-		end.setBairro("Centro");
-		end.setCidade("terra Do Nuca");
-		end.setEstado("PB");
-		professor2.setNome("Albert");
-		professor2.setEmail("albert@dce.ufpb.br");
-		professor2.setEndereco(end);
-		professor2.setMatricula(111);
-		professor2.setTelefone("0800-1111");
-		professor2.setSalario("5000.0");
-		professor2.setCpf("22222222");
-		return professor2;
+		endereco.setRua("uma rua qualquer");
+		endereco.setNumero("1000");
+		endereco.setComplemento("blablabla");
+		endereco.setBairro("Centro");
+		endereco.setCidade("terra Do Nuca");
+		endereco.setEstado("PB");
+		professorAuxiliar.setEndereco(endereco);
+		
+		return professorAuxiliar;
 	}
 
-	public PersonalTrainer criarPersonal() {
-
-		PersonalTrainer personal = new PersonalTrainer();
-		Endereco end = new Endereco();
-
-		end.setRua("Joao Aquino 2 Divisão");
-		end.setNumero("155");
-		end.setComplemento("555");
-		end.setBairro("Tambau");
-		end.setCidade("Joao Pessoa");
-		end.setEstado("PB");
-		personal.setNome("Waltercio Vilar");
-		personal.setEmail("walterciovilar@gmail.com");
-		personal.setEndereco(end);
-		personal.setMatricula(1);
-		personal.setTelefone("3235-3333");
-		personal.setDescricao("Traballho seg a sabado");
-		personal.setDiaria("R$ 20,00");
-		return personal;
+	public Professor criarProfessorSemDados() {
+		Professor professorAuxiliar = new Professor();
+		professorAuxiliar.setEndereco(new Endereco());
+		
+		return professorAuxiliar;
 	}
 
-	public PersonalTrainer criarPersonalAxiliar() {
+	public PersonalTrainer criarPersonalTrainer() {
+		PersonalTrainer personalTrainer = new PersonalTrainer();
+		Endereco endereco = new Endereco();
 
-		PersonalTrainer personal = new PersonalTrainer();
-		Endereco end = new Endereco();
+		personalTrainer.setNome("Waltercio Vilar");
+		personalTrainer.setEmail("walterciovilar@gmail.com");
+		personalTrainer.setMatricula("1");
+		personalTrainer.setTelefone("3235-3333");
+		personalTrainer.setDescricao("Traballho seg a sabado");
+		personalTrainer.setDiaria("R$ 20,00");
 
-		end.setRua("rua da Alvorada");
-		end.setNumero("234");
-		end.setComplemento("3456");
-		end.setBairro("Centro");
-		end.setCidade("Rio Tinto");
-		end.setEstado("PB");
-		personal.setNome("Everton");
-		personal.setEmail("Everton@gmail.com");
-		personal.setEndereco(end);
-		personal.setMatricula(8);
-		personal.setTelefone("3235-4444");
-		personal.setDescricao("Traballho seg a sabado");
-		personal.setDiaria("R$ 20,00");
-		return personal;
+		endereco.setRua("Joao Aquino 2 Divisão");
+		endereco.setNumero("155");
+		endereco.setComplemento("555");
+		endereco.setBairro("Tambau");
+		endereco.setCidade("Joao Pessoa");
+		endereco.setEstado("PB");
+		personalTrainer.setEndereco(endereco);
+		
+		return personalTrainer;
 	}
 
+	public PersonalTrainer criarPersonalTrainerAxiliar() {
+		PersonalTrainer personalTrainerAuxiliar = new PersonalTrainer();
+		Endereco endereco = new Endereco();
+
+		personalTrainerAuxiliar.setNome("Everton");
+		personalTrainerAuxiliar.setEmail("Everton@gmail.com");
+		personalTrainerAuxiliar.setMatricula("8");
+		personalTrainerAuxiliar.setTelefone("3235-4444");
+		personalTrainerAuxiliar.setDescricao("Traballho seg a sabado");
+		personalTrainerAuxiliar.setDiaria("R$ 20,00");
+		
+		endereco.setRua("rua da Alvorada");
+		endereco.setNumero("234");
+		endereco.setComplemento("3456");
+		endereco.setBairro("Centro");
+		endereco.setCidade("Rio Tinto");
+		endereco.setEstado("PB");
+		personalTrainerAuxiliar.setEndereco(endereco);
+		
+		return personalTrainerAuxiliar;
+	}
+
+	public PersonalTrainer criarPersonalTrainerSemDados() {
+		PersonalTrainer personalTrainerAuxiliar = new PersonalTrainer();
+		personalTrainerAuxiliar.setEndereco(new Endereco());
+		
+		return personalTrainerAuxiliar;
+	}
 }

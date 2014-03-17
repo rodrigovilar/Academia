@@ -25,7 +25,7 @@ public class FachadaAcademia {
 		gerentePersonals = new GerenciadorPersonalTrainer();
 	}
 
-	public void adcionarAluno(Aluno aluno) {
+	public void adicionarAluno(Aluno aluno) {
 		gerenAluno.adcionarAluno(aluno);
 	}
 
@@ -37,11 +37,11 @@ public class FachadaAcademia {
 		return gerenAluno.quantidadeDeAluno();
 	}
 
-	public int quantidadeDeProfesores() {
+	public int quantidadeDeProfessores() {
 		return gerenProf.quantidadeDeProfessor();
 	}
 
-	public Aluno buscarAluno(int matricula) {
+	public Aluno buscarAluno(String matricula) {
 		return gerenAluno.buscarAluno(matricula);
 	}
 
@@ -53,7 +53,7 @@ public class FachadaAcademia {
 		return gerenAluno.getAluno(posicao);
 	}
 
-	public void adcionarProfessor(Professor professor) {
+	public void adicionarProfessor(Professor professor) {
 		gerenProf.adcionarProfessor(professor);
 	}
 
@@ -61,11 +61,11 @@ public class FachadaAcademia {
 		gerenProf.removerProfessor(professor);
 	}
 
-	public Professor buscarProfessor(int matricula) {
+	public Professor buscarProfessor(String matricula) {
 		return gerenProf.buscarProfessor(matricula);
 	}
 
-	public Professor getpProfessor(int posicao) {
+	public Professor getProfessor(int posicao) {
 		return gerenProf.getProfessor(posicao);
 	}
 
@@ -73,7 +73,7 @@ public class FachadaAcademia {
 		gerenProf.atualizarProfessor(profAntigo, profNovo);
 	}
 
-	public void adcionarPersonal(PersonalTrainer personal) {
+	public void adicionarPersonal(PersonalTrainer personal) {
 		gerentePersonals.adcionarPersonal(personal);
 	}
 
@@ -85,7 +85,7 @@ public class FachadaAcademia {
 		return gerentePersonals.quantidadeDePersonal();
 	}
 
-	public PersonalTrainer buscarPersonal(int matricula) {
+	public PersonalTrainer buscarPersonal(String matricula) {
 		return gerentePersonals.buscarPersonal(matricula);
 	}
 

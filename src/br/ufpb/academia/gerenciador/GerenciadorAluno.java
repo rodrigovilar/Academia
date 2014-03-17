@@ -14,14 +14,20 @@ public class GerenciadorAluno {
 	List<Aluno> listaAlunos = new ArrayList<>();
 
 	public void adcionarAluno(Aluno aluno) {
-		listaAlunos.add(aluno);
+		if ((aluno.getNome() != null) 
+				&& (aluno.getMatricula() != null)
+				&& (aluno.getModalidade() != null)
+				&& (aluno.getModalidade().getNome() != null)
+				&& (aluno.getModalidade().getValor() >= 0)
+				&& (buscarAluno(aluno.getMatricula()) == null))
+			listaAlunos.add(aluno);
 	}
 
 	public List<Aluno> listarAlunos() {
 		return listaAlunos;
 	}
 
-	public Aluno buscarAluno(int matricula) {
+	public Aluno buscarAluno(String matricula) {
 		for (Aluno aluno : listaAlunos) {
 			if (aluno.getMatricula() == matricula) {
 				return aluno;
